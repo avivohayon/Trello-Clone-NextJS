@@ -1,7 +1,4 @@
-import { create } from "@/actions/create-board";
-import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import { Suspense } from "react";
 
 import { Board } from "./board";
 import { Form } from "./form";
