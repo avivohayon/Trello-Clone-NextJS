@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
+
+console.log("logs routes test branch ")
 export async function GET(
   req: Request,
   { params }: { params: { cardId: string } }
