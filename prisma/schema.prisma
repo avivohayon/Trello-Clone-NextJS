@@ -65,12 +65,52 @@ enum ENTITY_TYPE {
   BOARD
   LIST
   CARD
+  TEST
+  QUESTION
+}
+
+enum REASON {
+  START
+  SUBMIT
+  FINISH
+  TRACKING
+  INPUT
+}
+
+enum MEDIA_TYPE {
+  CAMERA
+  SCREENSHOT
+  AUDIO
+}
+
+model Answer {
+  id String @id @default(uuid())
+
+  // we can extract the org id from the card realtion in the list and its realtion to the board
+
+  orgId String
+
+  boardId    String // the id of the board contain the tests
+  boardTitle String // name of the test
+
+  listId    String // the id of the question list  contain the questions card
+  listTitle String // the name of the question list
+
+  cardId   String // the id of the card contain the qustion itself
+  question String @db.Text // the title of the card which is the question itself
+  answer   String @db.Text // the answer of the user of the card question (its the card question description)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([cardId])
 }
 
 model AuditLog {
-  id          String      @id @default(uuid())
-  orgId       String
-  action      ACTION
+  id     String @id @default(uuid())
+  orgId  String
+  action ACTION
+
   entityId    String
   entityType  ENTITY_TYPE
   entityTitle String
@@ -80,6 +120,24 @@ model AuditLog {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model MediaActivityLog {
+  id String @id @default(uuid())
+
+  orgId String // dynamic
+
+  reason    REASON
+  mediaType MEDIA_TYPE
+
+  title       String
+  description String
+
+  dataUrl String @db.Text //base64-encoded
+
+  userId    String
+  userImage String @db.Text
+  userName  String @db.Text
 }
 
 model OrgLimit {

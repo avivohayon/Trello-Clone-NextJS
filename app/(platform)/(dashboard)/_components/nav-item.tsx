@@ -2,7 +2,15 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import { Activity, CreditCard, Layout, Settings } from "lucide-react";
+import {
+  Activity,
+  CreditCard,
+  Layout,
+  Settings,
+  ClipboardList,
+  Trophy,
+  FileQuestion,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -56,6 +64,21 @@ export const NavItem = ({
       label: "Billing",
       icon: <CreditCard className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}/billing`,
+    },
+    {
+      label: "Questions",
+      icon: <FileQuestion className="h-4 w-4 mr-2" />,
+      href: `/organization/${organization.id}/questions`,
+    },
+    {
+      label: "Test",
+      icon: <ClipboardList className="h-4 w-4 mr-2" />,
+      href: `/organization/${organization.id}/test`,
+    },
+    {
+      label: "Result",
+      icon: <Trophy className="h-4 w-4 mr-2" />,
+      href: `/organization/${organization.id}/result`,
     },
   ];
 
